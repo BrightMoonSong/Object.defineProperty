@@ -1,4 +1,6 @@
 理解Object.defineProperty的作用
+====
+----
 
 对象是由多个名/值对组成的无序的集合。对象中每个属性对应任意类型的值。
 
@@ -35,16 +37,17 @@ descriptor：必需。目标属性所拥有的特性
 
 数据描述
 
-当修改或定义对象的某个属性的时候，给这个属性添加一些特性：
-({
+当修改或定义对象的某个属性的时候，给这个属性添加一些特性：<br/>
+```
 var obj = {
 
     test:"hello"
 	
 }
-})
-//对象已有的属性添加特性描述
+```
+//对象已有的属性添加特性描述<br/>
 
+```
 Object.defineProperty(obj,"test",{
 
     configurable:true | false,
@@ -56,9 +59,9 @@ Object.defineProperty(obj,"test",{
     writable:true | false
 	
 });
-
+```
 //对象新添加的属性的特性描述
-
+```
 Object.defineProperty(obj,"newKey",{
 
     configurable:true | false,
@@ -70,26 +73,26 @@ Object.defineProperty(obj,"newKey",{
     writable:true | false
 	
 });
-
+```
 数据描述中的属性都是可选的，来看一下设置每一个属性的作用。
 
 value
 
 属性对应的值,可以使任意类型的值，默认为undefined
-
+```
 var obj = {}
-
+```
 //第一种情况：不设置value属性
-
+```
 Object.defineProperty(obj,"newKey",{
 
 });
 console.log( obj.newKey );  //undefined
-
+```
 ------------------------------
 
 //第二种情况：设置value属性
-
+```
 Object.defineProperty(obj,"newKey",{
 
     value:"hello"
@@ -97,15 +100,15 @@ Object.defineProperty(obj,"newKey",{
 });
 
 console.log( obj.newKey );  //hello
-
-writable
+```
+##writable
 
 属性的值是否可以被重写。设置为true可以被重写；设置为false，不能被重写。默认为false。
-
+```
 var obj = {}
-
+```
 //第一种情况：writable设置为false，不能重写。
-
+```
 Object.defineProperty(obj,"newKey",{
 
     value:"hello",
@@ -113,14 +116,14 @@ Object.defineProperty(obj,"newKey",{
     writable:false
 	
 });
-
+```
 //更改newKey的值
-
+```
 obj.newKey = "change value";
 
 console.log( obj.newKey );  //hello
-
-
+```
+```
 //第二种情况：writable设置为true，可以重写
 
 Object.defineProperty(obj,"newKey",{
@@ -136,11 +139,11 @@ Object.defineProperty(obj,"newKey",{
 obj.newKey = "change value";
 
 console.log( obj.newKey );  //change value
-
+```
 enumerable
 
 此属性是否可以被枚举（使用for...in或Object.keys()）。设置为true可以被枚举；设置为false，不能被枚举。默认为false。
-
+```
 var obj = {}
 
 //第一种情况：enumerable设置为false，不能被枚举。
@@ -182,7 +185,7 @@ for( var attr in obj ){
     console.log( attr );  //newKey
 	
 }
-
+```
 configurable
 
 
@@ -193,7 +196,7 @@ configurable
 目标属性是否可以使用delete删除
 
 目标属性是否可以再次设置特性
-
+```
 //-----------------测试目标属性是否能被删除------------------------
 
 var obj = {}
@@ -301,9 +304,9 @@ Object.defineProperty(obj,"newKey",{
 });
 
 console.log( obj.newKey ); //hello
-
-除了可以给新定义的属性设置特性，也可以给已有的属性设置特性
-
+```
+###除了可以给新定义的属性设置特性，也可以给已有的属性设置特性
+```
 //定义对象的时候添加的属性，是可删除、可重写、可枚举的。
 
 var obj = {
@@ -330,9 +333,9 @@ Object.defineProperty(obj,"test",{
 obj.test = 'change value again';
 
 console.log( obj.test ); //依然是：'change value'
-
-提示：一旦使用Object.defineProperty给对象添加属性，那么如果不设置属性的特性，那么configurable、enumerable、writable这些值都为默认的false
-
+```
+#####提示：一旦使用Object.defineProperty给对象添加属性，那么如果不设置属性的特性，那么configurable、enumerable、writable这些值都为默认的false
+```
 var obj = {};
 
 //定义的新属性后，这个属性的特性中configurable，enumerable，writable都为默认的值false
@@ -358,7 +361,7 @@ for( var attr in obj ){
     console.log(attr);
 	
 }
-
+```
 设置的特性总结：
 
 
@@ -373,7 +376,7 @@ configurable: 目标属性是否可以被删除或是否可以再次修改特性
 存取器描述
 
 当使用存取器描述属性的特性的时候，允许设置以下特性属性：
-
+```
 var obj = {};
 
 Object.defineProperty(obj,"newKey",{
@@ -387,7 +390,7 @@ Object.defineProperty(obj,"newKey",{
     enumerable: true | false
 	
 });
-
+```
 注意：当使用了getter或setter方法，不允许使用writable和value这两个属性
 
 getter/setter
@@ -399,7 +402,7 @@ getter 是一种获得属性值的方法
 setter是一种设置属性值的方法。
 
 在特性中使用get/set属性来定义对应的方法。
-
+```
 var obj = {};
 
 var initValue = 'hello';
@@ -431,7 +434,7 @@ console.log( obj.newKey );  //hello
 obj.newKey = 'change value';
 
 console.log( obj.newKey ); //change value
-
+```
 注意：get或set不是必须成对出现，任写其一就可以。如果不设置方法，则get和set的默认值为undefined
 
 configurable和enumerable同上面的用法。
