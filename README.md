@@ -13,12 +13,10 @@ obj.say = function(){};  //添加行为
 
 Object.defineProperty(obj, prop, descriptor)
 参数说明：
-
-obj：必需。目标对象 
+obj：必需。目标对象
 prop：必需。需定义或修改的属性的名字
 descriptor：必需。目标属性所拥有的特性
 返回值：
-
 传入函数的对象。即第一个参数obj
 针对属性，我们可以给这个属性设置一些特性，比如是否只读不可以写；是否可以被for..in或Object.keys()遍历。
 
