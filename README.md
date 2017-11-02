@@ -38,7 +38,7 @@ descriptor：必需。目标属性所拥有的特性
 数据描述
 
 当修改或定义对象的某个属性的时候，给这个属性添加一些特性：<br/>
-```
+```javascript
 var obj = {
 
     test:"hello"
@@ -47,7 +47,7 @@ var obj = {
 ```
 //对象已有的属性添加特性描述<br/>
 
-```
+```javascript
 Object.defineProperty(obj,"test",{
 
     configurable:true | false,
