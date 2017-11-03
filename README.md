@@ -101,7 +101,7 @@ Object.defineProperty(obj,"newKey",{
 
 console.log( obj.newKey );  //hello
 ```
-##writable
+## writable
 
 属性的值是否可以被重写。设置为true可以被重写；设置为false，不能被重写。默认为false。
 ```
@@ -305,7 +305,7 @@ Object.defineProperty(obj,"newKey",{
 
 console.log( obj.newKey ); //hello
 ```
-###除了可以给新定义的属性设置特性，也可以给已有的属性设置特性
+### 除了可以给新定义的属性设置特性，也可以给已有的属性设置特性
 ```
 //定义对象的时候添加的属性，是可删除、可重写、可枚举的。
 
@@ -334,7 +334,7 @@ obj.test = 'change value again';
 
 console.log( obj.test ); //依然是：'change value'
 ```
-#####提示：一旦使用Object.defineProperty给对象添加属性，那么如果不设置属性的特性，那么configurable、enumerable、writable这些值都为默认的false
+##### 提示：一旦使用Object.defineProperty给对象添加属性，那么如果不设置属性的特性，那么configurable、enumerable、writable这些值都为默认的false
 ```
 var obj = {};
 
